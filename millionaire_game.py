@@ -3,7 +3,7 @@ import random
 from colorama import Fore, Style
 import time
 
-    
+
 def get_player(name):
     with open("players_data.json", "r", encoding='utf-8') as players_data_file:
         data = json.load(players_data_file)
@@ -75,18 +75,20 @@ def get_statistics(player):
     print(f"Програні ігри: {Fore.RED + str(player['losses']) + Style.RESET_ALL}")
     print(f"Правильні відповіді: {Fore.GREEN + str(player['correct_answers']) + Style.RESET_ALL}")
     print(f"Виграно грошей: {Fore.YELLOW + str(player['total_money']) + Style.RESET_ALL}$")
-    print("--------------------------")
     time.sleep(5)
 
 
 def get_instructions():
     print("--------------------------")
     print("Інструкція:")
-    print("Гравець відповідає на питання, вибираючи один з варіантів відповідей: A, B, C або D.")
+    print("Гравець відповідає на питання, вибираючи один з варіантів відповідей: A, B, C або D.\n")
     print("Гравець може використовувати підказки: 50/50, Ask, Call.")
-    print("Гравець може вийти з гри в меню, натиснувши '0'.")
+    print("Підказка 50/50: з двох неправильних варіантів залишається один.")
+    print("Підказка Ask: допомога залу. Показує відсоток голосів для кожного варіанту відповіді.")
+    print("Підказка Call: ви дзвоните другу, який повинен обрати один з варіантів. Але хто знає, чи зможе він допомогти?\n")
+    print("Гравець може вийти з гри, натиснувши '0'.")
     print("Гравець може переглянути статистику в меню або після закінчення гри.")
-    print("--------------------------")
+    print("Гарної гри!")
     time.sleep(5)
 
 
