@@ -4,7 +4,7 @@ from colorama import Fore, Style
 import time
 
 
-def get_player(name):
+def get_player(name: str) -> dict:
     with open("players_data.json", "r", encoding='utf-8') as players_data_file:
         data = json.load(players_data_file)
 
@@ -33,7 +33,7 @@ def get_player(name):
     return player
 
 
-def save_player(player):
+def save_player(player: dict):
     with open("players_data.json", "r", encoding='utf-8') as players_data_file:
         data = json.load(players_data_file)
     if data:
@@ -57,7 +57,7 @@ def get_question_list():
     return random.sample(questions, 15)
 
 
-def get_current_question(current_question):
+def get_current_question(current_question: dict):
     print(current_question['question'])
     print("Варіанти: ")
 
@@ -67,7 +67,7 @@ def get_current_question(current_question):
     print("--------------------------")
 
 
-def get_statistics(player):
+def get_statistics(player: dict):
     print("--------------------------")
     print("Статистика:")
     print(f"Ім'я: {player['name']}")
@@ -92,7 +92,7 @@ def get_instructions():
     time.sleep(5)
 
 
-def menu(player):
+def menu(player: dict):
     while True:
         print("--------------------------")
         print(Fore.YELLOW + "Ласкаво просимо до гри 'Хто хоче стати мільйонером'!" + Style.RESET_ALL)
@@ -124,7 +124,7 @@ def menu(player):
                 time.sleep(2)
 
 
-def get_hint_50_50(allowed, question):
+def get_hint_50_50(allowed: bool, question):
     if allowed:
         allowerd_keys = [key for key in question["options"].keys() if key != question['correct_answer']]
         hint_keys = random.sample(allowerd_keys, 2)
@@ -143,7 +143,7 @@ def get_hint_50_50(allowed, question):
         return  
 
 
-def get_hint_ask(allowed, question):
+def get_hint_ask(allowed: bool, question: dict):
     if allowed:
         correct_votes = random.randint(50, 80)
         question['options'][question['correct_answer']] += f" {str(correct_votes)}% "
@@ -161,7 +161,7 @@ def get_hint_ask(allowed, question):
         return
 
 
-def get_hint_call(allowed, question):
+def get_hint_call(allowed: bool, question: dict):
     if allowed:
         hint_answer = random.choice(list(question['options'].keys()))
         
@@ -177,7 +177,7 @@ def get_hint_call(allowed, question):
         return
     
 
-def game(player):
+def game(player: dict):
     if not player['question_list']:
         player['question_list'] = get_question_list()
 
